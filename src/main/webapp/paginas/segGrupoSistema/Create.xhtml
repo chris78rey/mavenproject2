@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegGrupoSistemaCreateDlg" widgetVar="SegGrupoSistemaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSegGrupoSistemaTitle}">
+            <h:form id="SegGrupoSistemaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segGrupoSistemaController.selected != null}">
+                     <p:outputLabel value="#{bundle.CreateSegGrupoSistemaLabel_gruDescripcion}" for="gruDescripcion" />
+                        <p:inputText id="gruDescripcion" value="#{segGrupoSistemaController.selected.gruDescripcion}" title="#{bundle.CreateSegGrupoSistemaTitle_gruDescripcion}" required="true" requiredMessage="#{bundle.CreateSegGrupoSistemaRequiredMessage_gruDescripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateSegGrupoSistemaLabel_gruEstado}" for="gruEstado" />
+                        <p:inputText id="gruEstado" value="#{segGrupoSistemaController.selected.gruEstado}" title="#{bundle.CreateSegGrupoSistemaTitle_gruEstado}" />
+                        <p:outputLabel value="#{bundle.CreateSegGrupoSistemaLabel_gruOrdenPresentacion}" for="gruOrdenPresentacion" />
+                        <p:inputText id="gruOrdenPresentacion" value="#{segGrupoSistemaController.selected.gruOrdenPresentacion}" title="#{bundle.CreateSegGrupoSistemaTitle_gruOrdenPresentacion}" />
+                        <p:outputLabel value="#{bundle.CreateSegGrupoSistemaLabel_gruUltimoNivel}" for="gruUltimoNivel" />
+                        <p:inputText id="gruUltimoNivel" value="#{segGrupoSistemaController.selected.gruUltimoNivel}" title="#{bundle.CreateSegGrupoSistemaTitle_gruUltimoNivel}" />
+                        <p:outputLabel value="#{bundle.CreateSegGrupoSistemaLabel_segGrupoSistema}" for="segGrupoSistema" />
+                        <p:selectOneMenu id="segGrupoSistema" value="#{segGrupoSistemaController.selected.segGrupoSistema}" >
+                            <f:selectItems value="#{segGrupoSistemaController.itemsAvailableSelectOne}"
+                                           var="segGrupoSistemaItem"
+                                           itemValue="#{segGrupoSistemaItem}" itemLabel="#{segGrupoSistemaItem.gruDescripcion}" />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{segGrupoSistemaController.create}" value="#{bundle.Save}" update="display,:SegGrupoSistemaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SegGrupoSistemaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SegGrupoSistemaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

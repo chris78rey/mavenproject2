@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegOpcionPerfilEditDlg" widgetVar="SegOpcionPerfilEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSegOpcionPerfilTitle}">
+            <h:form id="SegOpcionPerfilEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segOpcionPerfilController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditSegOpcionPerfilLabel_oppId}" for="oppId" />
+                        <p:inputText id="oppId" value="#{segOpcionPerfilController.selected.oppId}" title="#{bundle.EditSegOpcionPerfilTitle_oppId}" required="true" requiredMessage="#{bundle.EditSegOpcionPerfilRequiredMessage_oppId}"/>
+                        <p:outputLabel value="#{bundle.EditSegOpcionPerfilLabel_oppInsertar}" for="oppInsertar" />
+                        <p:inputText id="oppInsertar" value="#{segOpcionPerfilController.selected.oppInsertar}" title="#{bundle.EditSegOpcionPerfilTitle_oppInsertar}" />
+                        <p:outputLabel value="#{bundle.EditSegOpcionPerfilLabel_oppEliminar}" for="oppEliminar" />
+                        <p:inputText id="oppEliminar" value="#{segOpcionPerfilController.selected.oppEliminar}" title="#{bundle.EditSegOpcionPerfilTitle_oppEliminar}" />
+                        <p:outputLabel value="#{bundle.EditSegOpcionPerfilLabel_oppActualizar}" for="oppActualizar" />
+                        <p:inputText id="oppActualizar" value="#{segOpcionPerfilController.selected.oppActualizar}" title="#{bundle.EditSegOpcionPerfilTitle_oppActualizar}" />
+                        <p:outputLabel value="#{bundle.EditSegOpcionPerfilLabel_oppConsultar}" for="oppConsultar" />
+                        <p:inputText id="oppConsultar" value="#{segOpcionPerfilController.selected.oppConsultar}" title="#{bundle.EditSegOpcionPerfilTitle_oppConsultar}" />
+                        <p:outputLabel value="#{bundle.EditSegOpcionPerfilLabel_oppEstado}" for="oppEstado" />
+                        <p:inputText id="oppEstado" value="#{segOpcionPerfilController.selected.oppEstado}" title="#{bundle.EditSegOpcionPerfilTitle_oppEstado}" />
+                        <p:outputLabel value="#{bundle.EditSegOpcionPerfilLabel_segOpcionMenu}" for="segOpcionMenu" />
+                        <p:selectOneMenu id="segOpcionMenu" value="#{segOpcionPerfilController.selected.segOpcionMenu}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{segOpcionMenuController.itemsAvailableSelectOne}"
+                                           var="segOpcionMenuItem"
+                                           itemValue="#{segOpcionMenuItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSegOpcionPerfilLabel_segPerfil}" for="segPerfil" />
+                        <p:selectOneMenu id="segPerfil" value="#{segOpcionPerfilController.selected.segPerfil}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{segPerfilController.itemsAvailableSelectOne}"
+                                           var="segPerfilItem"
+                                           itemValue="#{segPerfilItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{segOpcionPerfilController.update}" value="#{bundle.Save}" update="display,:SegOpcionPerfilListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SegOpcionPerfilEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SegOpcionPerfilEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

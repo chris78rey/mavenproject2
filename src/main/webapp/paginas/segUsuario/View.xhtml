@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegUsuarioViewDlg" widgetVar="SegUsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSegUsuarioTitle}">
+            <h:form id="SegUsuarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segUsuarioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSegUsuarioLabel_usuId}"/>
+                        <h:outputText value="#{segUsuarioController.selected.usuId}" title="#{bundle.ViewSegUsuarioTitle_usuId}"/>
+                        <h:outputText value="#{bundle.ViewSegUsuarioLabel_usuNombre}"/>
+                        <h:outputText value="#{segUsuarioController.selected.usuNombre}" title="#{bundle.ViewSegUsuarioTitle_usuNombre}"/>
+                        <h:outputText value="#{bundle.ViewSegUsuarioLabel_usuClave}"/>
+                        <h:outputText value="#{segUsuarioController.selected.usuClave}" title="#{bundle.ViewSegUsuarioTitle_usuClave}"/>
+                        <h:outputText value="#{bundle.ViewSegUsuarioLabel_usuFechaCreacion}"/>
+                        <h:outputText value="#{segUsuarioController.selected.usuFechaCreacion}" title="#{bundle.ViewSegUsuarioTitle_usuFechaCreacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSegUsuarioLabel_usuFechaModificacion}"/>
+                        <h:outputText value="#{segUsuarioController.selected.usuFechaModificacion}" title="#{bundle.ViewSegUsuarioTitle_usuFechaModificacion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSegUsuarioLabel_usuEstado}"/>
+                        <h:outputText value="#{segUsuarioController.selected.usuEstado}" title="#{bundle.ViewSegUsuarioTitle_usuEstado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SegUsuarioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegPerfilCreateDlg" widgetVar="SegPerfilCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSegPerfilTitle}">
+            <h:form id="SegPerfilCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segPerfilController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSegPerfilLabel_perId}" for="perId" />
+                        <p:inputText id="perId" value="#{segPerfilController.selected.perId}" title="#{bundle.CreateSegPerfilTitle_perId}" required="true" requiredMessage="#{bundle.CreateSegPerfilRequiredMessage_perId}"/>
+                        <p:outputLabel value="#{bundle.CreateSegPerfilLabel_perDescripcion}" for="perDescripcion" />
+                        <p:inputText id="perDescripcion" value="#{segPerfilController.selected.perDescripcion}" title="#{bundle.CreateSegPerfilTitle_perDescripcion}" required="true" requiredMessage="#{bundle.CreateSegPerfilRequiredMessage_perDescripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateSegPerfilLabel_perEstado}" for="perEstado" />
+                        <p:inputText id="perEstado" value="#{segPerfilController.selected.perEstado}" title="#{bundle.CreateSegPerfilTitle_perEstado}" />
+                        <p:outputLabel value="#{bundle.CreateSegPerfilLabel_segGrupoSistema}" for="segGrupoSistema" />
+                        <p:selectOneMenu id="segGrupoSistema" value="#{segPerfilController.selected.segGrupoSistema}" required="true" requiredMessage="#{bundle.EditSegPerfilRequiredMessage_segGrupoSistema}">
+                            <f:selectItems value="#{segGrupoSistemaController.itemsAvailableSelectOne}"
+                                           var="segGrupoSistemaItem"
+                                           itemValue="#{segGrupoSistemaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{segPerfilController.create}" value="#{bundle.Save}" update="display,:SegPerfilListForm:datalist,:growl" oncomplete="handleSubmit(args,'SegPerfilCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SegPerfilCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

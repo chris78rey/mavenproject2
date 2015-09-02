@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegOpcionMenuViewDlg" widgetVar="SegOpcionMenuViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSegOpcionMenuTitle}">
+            <h:form id="SegOpcionMenuViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segOpcionMenuController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_opcId}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.opcId}" title="#{bundle.ViewSegOpcionMenuTitle_opcId}"/>
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_opcNombreOpcion}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.opcNombreOpcion}" title="#{bundle.ViewSegOpcionMenuTitle_opcNombreOpcion}"/>
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_opcNivel}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.opcNivel}" title="#{bundle.ViewSegOpcionMenuTitle_opcNivel}"/>
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_opcUltimoNivel}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.opcUltimoNivel}" title="#{bundle.ViewSegOpcionMenuTitle_opcUltimoNivel}"/>
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_opcOrdenPresentacion}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.opcOrdenPresentacion}" title="#{bundle.ViewSegOpcionMenuTitle_opcOrdenPresentacion}"/>
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_opcUrl}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.opcUrl}" title="#{bundle.ViewSegOpcionMenuTitle_opcUrl}"/>
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_opcEstado}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.opcEstado}" title="#{bundle.ViewSegOpcionMenuTitle_opcEstado}"/>
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_segGrupoSistema}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.segGrupoSistema}" title="#{bundle.ViewSegOpcionMenuTitle_segGrupoSistema}"/>
+                        <h:outputText value="#{bundle.ViewSegOpcionMenuLabel_segOpcionMenu}"/>
+                        <h:outputText value="#{segOpcionMenuController.selected.segOpcionMenu}" title="#{bundle.ViewSegOpcionMenuTitle_segOpcionMenu}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SegOpcionMenuViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

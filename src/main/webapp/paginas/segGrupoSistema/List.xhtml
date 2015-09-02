@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSegGrupoSistemaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="SegGrupoSistemaListForm">
+                <p:panel header="#{bundle.ListSegGrupoSistemaTitle}">
+                    <p:dataTable id="datalist" value="#{segGrupoSistemaController.items}" var="item"
+                                 selectionMode="single" selection="#{segGrupoSistemaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.gruId}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegGrupoSistemaTitle_segGrupoSistema}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.segGrupoSistema.gruDescripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegGrupoSistemaTitle_gruId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gruId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegGrupoSistemaTitle_gruDescripcion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gruDescripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegGrupoSistemaTitle_gruEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gruEstado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegGrupoSistemaTitle_gruOrdenPresentacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gruOrdenPresentacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegGrupoSistemaTitle_gruUltimoNivel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gruUltimoNivel}"/>
+                        </p:column>
+
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{segGrupoSistemaController.prepareCreate}" update=":SegGrupoSistemaCreateForm" oncomplete="PF('SegGrupoSistemaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SegGrupoSistemaViewForm" oncomplete="PF('SegGrupoSistemaViewDialog').show()" disabled="#{empty segGrupoSistemaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SegGrupoSistemaEditForm" oncomplete="PF('SegGrupoSistemaEditDialog').show()" disabled="#{empty segGrupoSistemaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{segGrupoSistemaController.destroy}" update=":growl,datalist" disabled="#{empty segGrupoSistemaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

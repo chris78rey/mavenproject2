@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegGrupoSistemaViewDlg" widgetVar="SegGrupoSistemaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSegGrupoSistemaTitle}">
+            <h:form id="SegGrupoSistemaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segGrupoSistemaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSegGrupoSistemaLabel_segGrupoSistema}"/>
+                        <p:selectOneMenu id="segGrupoSistema" value="#{segGrupoSistemaController.selected.segGrupoSistema}" >
+                            <f:selectItems value="#{segGrupoSistemaController.itemsAvailableSelectOne}"
+                                           var="segGrupoSistemaItem"
+                                           itemValue="#{segGrupoSistemaItem}" itemLabel="#{segGrupoSistemaItem.gruDescripcion}" />
+                        </p:selectOneMenu>
+                        <h:outputText value="#{bundle.ViewSegGrupoSistemaLabel_gruId}"/>
+                        <h:outputText value="#{segGrupoSistemaController.selected.gruId}" title="#{bundle.ViewSegGrupoSistemaTitle_gruId}"/>
+                        <h:outputText value="#{bundle.ViewSegGrupoSistemaLabel_gruDescripcion}"/>
+                        <h:outputText value="#{segGrupoSistemaController.selected.gruDescripcion}" title="#{bundle.ViewSegGrupoSistemaTitle_gruDescripcion}"/>
+                        <h:outputText value="#{bundle.ViewSegGrupoSistemaLabel_gruEstado}"/>
+                        <h:outputText value="#{segGrupoSistemaController.selected.gruEstado}" title="#{bundle.ViewSegGrupoSistemaTitle_gruEstado}"/>
+                        <h:outputText value="#{bundle.ViewSegGrupoSistemaLabel_gruOrdenPresentacion}"/>
+                        <h:outputText value="#{segGrupoSistemaController.selected.gruOrdenPresentacion}" title="#{bundle.ViewSegGrupoSistemaTitle_gruOrdenPresentacion}"/>
+                        <h:outputText value="#{bundle.ViewSegGrupoSistemaLabel_gruUltimoNivel}"/>
+                        <h:outputText value="#{segGrupoSistemaController.selected.gruUltimoNivel}" title="#{bundle.ViewSegGrupoSistemaTitle_gruUltimoNivel}"/>
+
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SegGrupoSistemaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

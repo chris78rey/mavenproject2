@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegUnidadUsuarioViewDlg" widgetVar="SegUnidadUsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSegUnidadUsuarioTitle}">
+            <h:form id="SegUnidadUsuarioViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segUnidadUsuarioController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSegUnidadUsuarioLabel_uusId}"/>
+                        <h:outputText value="#{segUnidadUsuarioController.selected.uusId}" title="#{bundle.ViewSegUnidadUsuarioTitle_uusId}"/>
+                        <h:outputText value="#{bundle.ViewSegUnidadUsuarioLabel_uusEstado}"/>
+                        <h:outputText value="#{segUnidadUsuarioController.selected.uusEstado}" title="#{bundle.ViewSegUnidadUsuarioTitle_uusEstado}"/>
+                        <h:outputText value="#{bundle.ViewSegUnidadUsuarioLabel_segUsuario}"/>
+                        <h:outputText value="#{segUnidadUsuarioController.selected.segUsuario}" title="#{bundle.ViewSegUnidadUsuarioTitle_segUsuario}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SegUnidadUsuarioViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

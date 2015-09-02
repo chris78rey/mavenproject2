@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegUsuarioCreateDlg" widgetVar="SegUsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSegUsuarioTitle}">
+            <h:form id="SegUsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segUsuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSegUsuarioLabel_usuId}" for="usuId" />
+                        <p:inputText id="usuId" value="#{segUsuarioController.selected.usuId}" title="#{bundle.CreateSegUsuarioTitle_usuId}" required="true" requiredMessage="#{bundle.CreateSegUsuarioRequiredMessage_usuId}"/>
+                        <p:outputLabel value="#{bundle.CreateSegUsuarioLabel_usuNombre}" for="usuNombre" />
+                        <p:inputText id="usuNombre" value="#{segUsuarioController.selected.usuNombre}" title="#{bundle.CreateSegUsuarioTitle_usuNombre}" required="true" requiredMessage="#{bundle.CreateSegUsuarioRequiredMessage_usuNombre}"/>
+                        <p:outputLabel value="#{bundle.CreateSegUsuarioLabel_usuClave}" for="usuClave" />
+                        <p:inputText id="usuClave" value="#{segUsuarioController.selected.usuClave}" title="#{bundle.CreateSegUsuarioTitle_usuClave}" required="true" requiredMessage="#{bundle.CreateSegUsuarioRequiredMessage_usuClave}"/>
+                        <p:outputLabel value="#{bundle.CreateSegUsuarioLabel_usuFechaCreacion}" for="usuFechaCreacion" />
+                        <p:calendar id="usuFechaCreacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{segUsuarioController.selected.usuFechaCreacion}" title="#{bundle.EditSegUsuarioTitle_usuFechaCreacion}" required="true" requiredMessage="#{bundle.EditSegUsuarioRequiredMessage_usuFechaCreacion}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSegUsuarioLabel_usuFechaModificacion}" for="usuFechaModificacion" />
+                        <p:calendar id="usuFechaModificacion" pattern="MM/dd/yyyy HH:mm:ss" value="#{segUsuarioController.selected.usuFechaModificacion}" title="#{bundle.EditSegUsuarioTitle_usuFechaModificacion}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateSegUsuarioLabel_usuEstado}" for="usuEstado" />
+                        <p:inputText id="usuEstado" value="#{segUsuarioController.selected.usuEstado}" title="#{bundle.CreateSegUsuarioTitle_usuEstado}" required="true" requiredMessage="#{bundle.CreateSegUsuarioRequiredMessage_usuEstado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{segUsuarioController.create}" value="#{bundle.Save}" update="display,:SegUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'SegUsuarioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SegUsuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

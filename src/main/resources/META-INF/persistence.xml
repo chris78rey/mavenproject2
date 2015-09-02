@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="PU" transaction-type="JTA">
+    <jta-data-source>jdbc/administrativo</jta-data-source>
+    <class>ec.mil.he1.entidades.SegGrupoSistema</class>
+    <class>ec.mil.he1.entidades.SegOpcionMenu</class>
+    <class>ec.mil.he1.entidades.SegOpcionPerfil</class>
+    <class>ec.mil.he1.entidades.SegPerfil</class>
+    <class>ec.mil.he1.entidades.SegPerfilUsuario</class>
+    <class>ec.mil.he1.entidades.SegUnidadUsuario</class>
+    <class>ec.mil.he1.entidades.SegUsuario</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties/>
+  </persistence-unit>
+</persistence>

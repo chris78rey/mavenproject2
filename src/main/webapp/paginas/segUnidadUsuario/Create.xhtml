@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SegUnidadUsuarioCreateDlg" widgetVar="SegUnidadUsuarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSegUnidadUsuarioTitle}">
+            <h:form id="SegUnidadUsuarioCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{segUnidadUsuarioController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateSegUnidadUsuarioLabel_uusId}" for="uusId" />
+                        <p:inputText id="uusId" value="#{segUnidadUsuarioController.selected.uusId}" title="#{bundle.CreateSegUnidadUsuarioTitle_uusId}" required="true" requiredMessage="#{bundle.CreateSegUnidadUsuarioRequiredMessage_uusId}"/>
+                        <p:outputLabel value="#{bundle.CreateSegUnidadUsuarioLabel_uusEstado}" for="uusEstado" />
+                        <p:inputText id="uusEstado" value="#{segUnidadUsuarioController.selected.uusEstado}" title="#{bundle.CreateSegUnidadUsuarioTitle_uusEstado}" />
+                        <p:outputLabel value="#{bundle.CreateSegUnidadUsuarioLabel_segUsuario}" for="segUsuario" />
+                        <p:selectOneMenu id="segUsuario" value="#{segUnidadUsuarioController.selected.segUsuario}" >
+                            <f:selectItems value="#{segUsuarioController.itemsAvailableSelectOne}"
+                                           var="segUsuarioItem"
+                                           itemValue="#{segUsuarioItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{segUnidadUsuarioController.create}" value="#{bundle.Save}" update="display,:SegUnidadUsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'SegUnidadUsuarioCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SegUnidadUsuarioCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSegPerfilUsuarioTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="SegPerfilUsuarioListForm">
+                <p:panel header="#{bundle.ListSegPerfilUsuarioTitle}">
+                    <p:dataTable id="datalist" value="#{segPerfilUsuarioController.items}" var="item"
+                                 selectionMode="single" selection="#{segPerfilUsuarioController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.peuId}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegPerfilUsuarioTitle_peuId}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.peuId}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegPerfilUsuarioTitle_peuEstado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.peuEstado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegPerfilUsuarioTitle_segPerfil}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.segPerfil.perDescripcion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSegPerfilUsuarioTitle_segUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.segUsuario.usuNombre}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{segPerfilUsuarioController.prepareCreate}" update=":SegPerfilUsuarioCreateForm" oncomplete="PF('SegPerfilUsuarioCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SegPerfilUsuarioViewForm" oncomplete="PF('SegPerfilUsuarioViewDialog').show()" disabled="#{empty segPerfilUsuarioController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SegPerfilUsuarioEditForm" oncomplete="PF('SegPerfilUsuarioEditDialog').show()" disabled="#{empty segPerfilUsuarioController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{segPerfilUsuarioController.destroy}" update=":growl,datalist" disabled="#{empty segPerfilUsuarioController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>
