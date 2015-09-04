@@ -15,15 +15,16 @@
                         <p:outputLabel value="#{bundle.EditSegPerfilLabel_perId}" for="perId" />
                         <p:inputText id="perId" value="#{segPerfilController.selected.perId}" title="#{bundle.EditSegPerfilTitle_perId}" required="true" requiredMessage="#{bundle.EditSegPerfilRequiredMessage_perId}"/>
                         <p:outputLabel value="#{bundle.EditSegPerfilLabel_perDescripcion}" for="perDescripcion" />
-                        <p:inputText id="perDescripcion" value="#{segPerfilController.selected.perDescripcion}" title="#{bundle.EditSegPerfilTitle_perDescripcion}" required="true" requiredMessage="#{bundle.EditSegPerfilRequiredMessage_perDescripcion}"/>
+                        <p:inputText id="perDescripcion" value="#{segPerfilController.selected.perDescripcion}" title="#{bundle.EditSegPerfilTitle_perDescripcion}" required="true" size="100" requiredMessage="#{bundle.EditSegPerfilRequiredMessage_perDescripcion}"/>
                         <p:outputLabel value="#{bundle.EditSegPerfilLabel_perEstado}" for="perEstado" />
                         <p:inputText id="perEstado" value="#{segPerfilController.selected.perEstado}" title="#{bundle.EditSegPerfilTitle_perEstado}" />
                         <p:outputLabel value="#{bundle.EditSegPerfilLabel_segGrupoSistema}" for="segGrupoSistema" />
                         <p:selectOneMenu id="segGrupoSistema" value="#{segPerfilController.selected.segGrupoSistema}" required="true" requiredMessage="#{bundle.EditSegPerfilRequiredMessage_segGrupoSistema}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{segGrupoSistemaController.itemsAvailableSelectOne}"
                                            var="segGrupoSistemaItem"
-                                           itemValue="#{segGrupoSistemaItem}"/>
+                                           itemValue="#{segGrupoSistemaItem}"
+                                           itemLabel="#{segGrupoSistemaItem.segGrupoSistema.gruDescripcion}-#{segGrupoSistemaItem.gruDescripcion}"
+                                           />
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{segPerfilController.update}" value="#{bundle.Save}" update="display,:SegPerfilListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SegPerfilEditDialog');"/>

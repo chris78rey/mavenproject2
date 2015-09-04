@@ -6,6 +6,7 @@ import ec.mil.he1.entities.jsfclasespackage.util.JsfUtil.PersistAction;
 import ec.mil.he1.entities.sesionbeanpackage.SegPerfilFacade;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -86,7 +87,12 @@ public class SegPerfilController implements Serializable {
             setEmbeddableKeys();
             try {
                 if (persistAction != PersistAction.DELETE) {
-                    getFacade().edit(selected);
+                    if (persistAction.equals(PersistAction.CREATE)) {
+                        selected.setPerId(BigDecimal.ZERO);
+                        getFacade().create(selected);
+                    } else {
+                        getFacade().edit(selected);
+                    }
                 } else {
                     getFacade().remove(selected);
                 }
