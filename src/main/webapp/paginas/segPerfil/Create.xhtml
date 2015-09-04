@@ -12,17 +12,17 @@
             <h:form id="SegPerfilCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{segPerfilController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSegPerfilLabel_perId}" for="perId" />
-                        <p:inputText id="perId" value="#{segPerfilController.selected.perId}" title="#{bundle.CreateSegPerfilTitle_perId}" required="true" requiredMessage="#{bundle.CreateSegPerfilRequiredMessage_perId}"/>
                         <p:outputLabel value="#{bundle.CreateSegPerfilLabel_perDescripcion}" for="perDescripcion" />
-                        <p:inputText id="perDescripcion" value="#{segPerfilController.selected.perDescripcion}" title="#{bundle.CreateSegPerfilTitle_perDescripcion}" required="true" requiredMessage="#{bundle.CreateSegPerfilRequiredMessage_perDescripcion}"/>
+                        <p:inputText id="perDescripcion" value="#{segPerfilController.selected.perDescripcion}" size="100" title="#{bundle.CreateSegPerfilTitle_perDescripcion}" required="true" requiredMessage="#{bundle.CreateSegPerfilRequiredMessage_perDescripcion}"/>
                         <p:outputLabel value="#{bundle.CreateSegPerfilLabel_perEstado}" for="perEstado" />
                         <p:inputText id="perEstado" value="#{segPerfilController.selected.perEstado}" title="#{bundle.CreateSegPerfilTitle_perEstado}" />
                         <p:outputLabel value="#{bundle.CreateSegPerfilLabel_segGrupoSistema}" for="segGrupoSistema" />
                         <p:selectOneMenu id="segGrupoSistema" value="#{segPerfilController.selected.segGrupoSistema}" required="true" requiredMessage="#{bundle.EditSegPerfilRequiredMessage_segGrupoSistema}">
                             <f:selectItems value="#{segGrupoSistemaController.itemsAvailableSelectOne}"
                                            var="segGrupoSistemaItem"
-                                           itemValue="#{segGrupoSistemaItem}"/>
+                                           itemValue="#{segGrupoSistemaItem}"
+                                           itemLabel="#{segGrupoSistemaItem.segGrupoSistema.gruDescripcion}-#{segGrupoSistemaItem.gruDescripcion}"
+                                           />
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{segPerfilController.create}" value="#{bundle.Save}" update="display,:SegPerfilListForm:datalist,:growl" oncomplete="handleSubmit(args,'SegPerfilCreateDialog');"/>
